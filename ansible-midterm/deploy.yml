@@ -1,0 +1,15 @@
+- hosts: server
+  become: yes
+  tasks:
+    - name: Create directory
+      file:
+        path: /var/www/Midterm-2026/your_name
+        state: directory
+
+    - name: Copy JAR file
+      copy:
+        src: target/app.jar
+        dest: /var/www/Midterm-2026/your_name/app.jar
+
+    - name: Run Spring Boot app
+      shell: "nohup java -jar /var/www/Midterm-2026/your_name/app.jar > app.log 2>&1 &"
